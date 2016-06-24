@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+	<title><ui:insert name="title">Default title</ui:insert></title>
+	<h:outputStylesheet name="/lib/bootstrap/css/bootstrap.css" />
+	<h:outputStylesheet name="/lib/modern-business.css" />
+	<h:outputStylesheet name="/lib/carousel.css" />
+
+
+</h:head>
+
+<body>
+
+	<!-- Navigation -->
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+	<div class="container">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse"
+				data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="index.xhtml">VLG Locadora de Jogos</a>
+		</div>
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse"
+			id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="index.xhtml">Home</a></li>
+				<li><a href="about.xhtml">A Empresa</a></li>
+				<li><a href="contact.xhtml">Contato</a></li>
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown">Acesso Restrito<b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="full-width.html">Full Width Page</a></li>
+						<li><a href="sidebar.html">Sidebar Page</a></li>
+						<li><a href="faq.html">FAQ</a></li>
+						<li><a href="404.html">404</a></li>
+						<li><a href="pricing.html">Pricing Table</a></li>
+					</ul></li>
+			</ul>
+		</div>
+		<!-- /.navbar-collapse -->
+	</div>
+	<!-- /.container --> </nav>
+
+	<ui:insert name="conteudo">
+
+		<!-- Header Carousel -->
+		<header id="myCarousel" class="carousel slide"> <!-- Indicators -->
+		<ol class="carousel-indicators">
+			<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+			<li data-target="#myCarousel" data-slide-to="1"></li>
+			<li data-target="#myCarousel" data-slide-to="2"></li>
+		</ol>
+
+		<!-- Wrapper for slides -->
+		<div class="carousel-inner">
+			<div class="item active">
+				<h:graphicImage name="/img/bloodborne.jpg" alt="BloodBorne" />
+			</div>
+			<div class="item">
+				<h:graphicImage name="/img/thewitcher3.jpg" alt="The Wicther 3" />
+			</div>
+			<div class="item">
+				<h:graphicImage name="/img/justcause.jpg" alt="Just Cause 3" />
+			</div>
+			<div class="item">
+				<h:graphicImage name="/img/fifa2015.jpg" alt="Fifa 2015" />
+			</div>
+		</div>
+
+		<!-- Controls --> <a class="left carousel-control" href="#myCarousel"
+			data-slide="prev"> <span class="icon-prev"></span>
+		</a> <a class="right carousel-control" href="#myCarousel"
+			data-slide="next"> <span class="icon-next"></span>
+		</a> </header>
+
+		<!-- Page Content -->
+		<div class="container">
+
+			<!-- Marketing Icons Section -->
+			<div class="row">
+				<div class="col-lg-12">
+					<h1 class="page-header">Bem vindo a VLG</h1>
+				</div>
+				<div class="col-md-4">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4>
+								<i class="fa fa-fw fa-check"></i> Seja Cliente Gold você também
+								!!!
+							</h4>
+						</div>
+						<div class="panel-body">
+							<p>Cliente Gold tem mais vantagens e facilidades na locação
+								de jogos...</p>
+							<a href="#" class="btn btn-default">Learn More</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /.row -->
+
+			<!-- Portfolio Section -->
+			<div class="row">
+				<div class="col-lg-12">
+					<h2 class="page-header">Jogos adicionados recentemente</h2>
+				</div>
+			</div>
+			<div class="list-group">
+				<a class="list-group-item">Assassin's creed Revelations </a> <a
+					class="list-group-item">Unchearted Drake's Fortune</a> <a
+					class="list-group-item">Assassin's creed II</a> <a
+					class="list-group-item">Assassin creed</a> <a
+					class="list-group-item">Mortal Kombat 9 Komplete Edition</a> <a
+					class="list-group-item">Batman Arkham Asylum</a> <a
+					class="list-group-item">Batman Arkham City</a> <a
+					class="list-group-item">Dante's inferno</a> <a
+					class="list-group-item">Dragon age 2</a> <a class="list-group-item">Resident
+					Evil 6 </a> <a class="list-group-item">Batman Arkham Origins</a> <a
+					class="list-group-item">Call of Duty Ghost</a> <a
+					class="list-group-item">Ultra Street fighter IV</a> <a
+					class="list-group-item">Resident Evil Operation Raccon City</a> <a
+					class="list-group-item">The Darkness 2</a> <a
+					class="list-group-item">Sengoku Basara: Samurai heroes</a> <a
+					class="list-group-item">The Last of us</a> <a
+					class="list-group-item">Beyond two souls</a> <a
+					class="list-group-item">Need for speed most wanted</a> <a
+					class="list-group-item">Assassin's creed Black Flag</a> <a
+					class="list-group-item">Assassin's Rogue</a> <a
+					class="list-group-item">Destiny</a> <a class="list-group-item">Darksiders</a>
+				<a class="list-group-item">God of War 3</a> <a
+					class="list-group-item">Bayonetta</a> <a class="list-group-item">Thief</a>
+				<a class="list-group-item">Naruto Shippuden Ultimate ninja storm
+					3 full burst</a> <a class="list-group-item">Cavaleiros dos Zodiaco
+					Brave Soldiers</a>
+
+			</div>
+			<!-- /.row -->
+
+			<!-- Footer -->
+			<footer>
+			<div class="row">
+				<div class="col-lg-12">
+					<p>Copyright &copy; Your Website 2014</p>
+				</div>
+			</div>
+			</footer>
+
+		</div>
+
+	</ui:insert>
+
+
+	<h:outputScript name="/lib/jquery.min.js" />
+	<h:outputScript name="/lib/bootstrap/js/bootstrap.js" />
+	<h:outputScript name="/lib/holder.min.js" />
+
+</body>
+</html>
