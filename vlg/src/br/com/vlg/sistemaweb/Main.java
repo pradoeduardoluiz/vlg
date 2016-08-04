@@ -1,6 +1,6 @@
 package br.com.vlg.sistemaweb;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -12,120 +12,80 @@ import br.com.vlg.sistemaweb.model.entity.Pessoa;
 
 public class Main {
 
-	final static Integer IDPESSOA = 1;
+	private static Pessoa p;
 
 	public static void main(String[] args) {
 
-		EntityManagerFactory entityManagerFactory = Persistence
-				.createEntityManagerFactory("vlg-pu");
+		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("vlg-pu");
 
-		inserirPessoa(entityManagerFactory);
-		alterarPessoa(entityManagerFactory);
+		EntityManager entity = entityManagerFactory.createEntityManager();
 
-		ArrayList<Pessoa> pessoas = new ArrayList<Pessoa>();
-
-		pessoas = listarPessoas(entityManagerFactory);
-
-		for (Pessoa pessoa : pessoas) {
-
-			System.out.println("Código: " + pessoa.getId());
-			System.out.println("Nome: " + pessoa.getNome() + "\n");
-
-		}
-
-		entityManagerFactory.close();
-
-		// excluirPessoa(entityManagerFactory);
 
 	}
 
-	private static EntityManager criaEntityMananger(
-			EntityManagerFactory entityManagerFactory) {
-		EntityManager entityManager = entityManagerFactory
-				.createEntityManager();
+	private static EntityManager criaEntityMananger(EntityManagerFactory entityManagerFactory) {
+		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		return entityManager;
 	}
 
-	private static Pessoa buscarPessoa(
-			EntityManagerFactory entityManagerFactory, Integer IDPESSOA) {
-
-		EntityManager entity = criaEntityMananger(entityManagerFactory);
-
-		begin(entity);
+	private static void buscarPessoa(EntityManager entity) {
 
 		Pessoa pessoaBusca = new Pessoa();
 
-		pessoaBusca = entity.getReference(Pessoa.class, IDPESSOA);
+		pessoaBusca = entity.getReference(Pessoa.class, p.getId());
 
-		close(entity);
-
-		return pessoaBusca;
+		System.out.println("Pessoa buscada: " + pessoaBusca.getNome());
 
 	}
 
-	@SuppressWarnings("unchecked")
-	private static ArrayList<Pessoa> listarPessoas(
-			EntityManagerFactory entityManagerFactory) {
-
-		EntityManager entity = criaEntityMananger(entityManagerFactory);
+	private static void listarPessoas(EntityManager entity) {
+		// TODO Auto-generated method stub
 
 		Query query = entity.createQuery("FROM pessoa");
 
-		ArrayList<Pessoa> pessoas = (ArrayList<Pessoa>) query.getResultList();
+		List<Pessoa> pessoas = query.getResultList();
 
-		entity.clear();
+		for (Pessoa pessoa : pessoas) {
 
-		return pessoas;
+			System.out.println("Codigo: " + pessoa.getId() + " Nome: " + pessoa.getNome());
+
+		}
 
 	}
 
-	private static void alterarPessoa(EntityManagerFactory entityManagerFactory) {
+	private static void alterarPessoa(EntityManager entity) {
 		// TODO Auto-generated method stub
 
-		Pessoa pessoa = buscarPessoa(entityManagerFactory, IDPESSOA);
+		Pessoa pessoa = new Pessoa();
+
+		pessoa = entity.getReference(Pessoa.class, p.getId());
 
 		System.out.println("Pessoa encontrada: " + pessoa.getNome());
-
-		EntityManager entity = criaEntityMananger(entityManagerFactory);
-
-		begin(entity);
 
 		pessoa.setNome("Eder Soares");
 
 		entity.merge(pessoa);
 
-		commit(entity);
-		close(entity);
-
-		Pessoa pessoaAlterada = buscarPessoa(entityManagerFactory, IDPESSOA);
+		Pessoa pessoaAlterada = entity.getReference(Pessoa.class, p.getId());
 
 		System.out.println("Pessoa Alterada: " + pessoaAlterada.getNome());
 
 	}
 
-	private static void excluirPessoa(EntityManagerFactory entityManagerFactory) {
+	private static void excluirPessoa(EntityManager entity) {
 		// TODO Auto-generated method stub
 
-		Pessoa pessoaExcluida = buscarPessoa(entityManagerFactory, IDPESSOA);
+		Pessoa pessoaExcluida = new Pessoa();
 
-		EntityManager entity = criaEntityMananger(entityManagerFactory);
-
-		begin(entity);
+		pessoaExcluida = entity.getReference(Pessoa.class, p.getId());
 
 		entity.remove(pessoaExcluida);
 
 		System.out.println("Exclui Pessoa...");
 
-		commit(entity);
-		close(entity);
-
 	}
 
-	private static void inserirPessoa(EntityManagerFactory entityManagerFactory) {
-
-		EntityManager entity = criaEntityMananger(entityManagerFactory);
-
-		begin(entity);
+	private static void inserirPessoa(EntityManager entity) {
 
 		Pessoa pessoa = new Pessoa();
 		Endereco endereco = new Endereco();
@@ -134,10 +94,7 @@ public class Main {
 		endereco.setRua("Rua Ernani Castros do Santos");
 		pessoa.setEndereco(endereco);
 
-		entity.merge(pessoa);
-
-		commit(entity);
-		close(entity);
+		p = entity.merge(pessoa);
 
 	}
 
