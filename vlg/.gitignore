@@ -1,4 +1,5 @@
 /build/
 /.project
 /.settings/
-/.classpath /.log 
+/.classpath /.log
+.classpath 

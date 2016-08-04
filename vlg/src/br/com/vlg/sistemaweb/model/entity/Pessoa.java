@@ -1,6 +1,7 @@
 package br.com.vlg.sistemaweb.model.entity;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -10,18 +11,20 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity(name = "pessoa")
 public class Pessoa {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	private String nome;
 	private String email;
 	private String senha;
-	private String telefone;
+	@OneToMany(mappedBy = "pessoa")
+	private List<Telefone> telefones;
 	private Date dataNascimento;
 	@Enumerated(EnumType.STRING)
 	private Perfil perfil;
@@ -70,12 +73,12 @@ public class Pessoa {
 		this.senha = senha;
 	}
 
-	public String getTelefone() {
-		return telefone;
+	public List<Telefone> getTelefones() {
+		return telefones;
 	}
 
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
+	public void setTelefones(List<Telefone> telefones) {
+		this.telefones = telefones;
 	}
 
 	public Date getDataNascimento() {
