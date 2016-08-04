@@ -16,7 +16,7 @@ import javax.persistence.OneToOne;
 public class Pessoa {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY )
 	private Integer id;
 	private String nome;
 	private String email;

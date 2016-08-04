@@ -1,17 +1,18 @@
 package br.com.vlg.sistemaweb;
 
-import java.util.Date;
+import java.util.ArrayList;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 import br.com.vlg.sistemaweb.model.entity.Endereco;
 import br.com.vlg.sistemaweb.model.entity.Pessoa;
 
 public class Main {
 
-	final static Integer IDPESSOA = 10;
+	final static Integer IDPESSOA = 1;
 
 	public static void main(String[] args) {
 
@@ -20,8 +21,21 @@ public class Main {
 
 		inserirPessoa(entityManagerFactory);
 		alterarPessoa(entityManagerFactory);
-		listarPessoas(entityManagerFactory);
-		excluirPessoa(entityManagerFactory);
+
+		ArrayList<Pessoa> pessoas = new ArrayList<Pessoa>();
+
+		pessoas = listarPessoas(entityManagerFactory);
+
+		for (Pessoa pessoa : pessoas) {
+
+			System.out.println("Código: " + pessoa.getId());
+			System.out.println("Nome: " + pessoa.getNome() + "\n");
+
+		}
+
+		entityManagerFactory.close();
+
+		// excluirPessoa(entityManagerFactory);
 
 	}
 
@@ -49,8 +63,19 @@ public class Main {
 
 	}
 
-	private static void listarPessoas(EntityManagerFactory entityManagerFactory) {
-		// TODO Auto-generated method stub
+	@SuppressWarnings("unchecked")
+	private static ArrayList<Pessoa> listarPessoas(
+			EntityManagerFactory entityManagerFactory) {
+
+		EntityManager entity = criaEntityMananger(entityManagerFactory);
+
+		Query query = entity.createQuery("FROM pessoa");
+
+		ArrayList<Pessoa> pessoas = (ArrayList<Pessoa>) query.getResultList();
+
+		entity.clear();
+
+		return pessoas;
 
 	}
 
@@ -80,7 +105,7 @@ public class Main {
 
 	private static void excluirPessoa(EntityManagerFactory entityManagerFactory) {
 		// TODO Auto-generated method stub
-		
+
 		Pessoa pessoaExcluida = buscarPessoa(entityManagerFactory, IDPESSOA);
 
 		EntityManager entity = criaEntityMananger(entityManagerFactory);
