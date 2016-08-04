@@ -18,7 +18,11 @@ import javax.persistence.OneToOne;
 public class Pessoa {
 
 	@Id
+<<<<<<< HEAD
+	@GeneratedValue(strategy=GenerationType.IDENTITY )
+=======
 	@GeneratedValue(strategy = GenerationType.AUTO)
+>>>>>>> d395fe3adadb08bfdfc153839f9f367d514fd5a1
 	private Integer id;
 	private String nome;
 	private String email;
