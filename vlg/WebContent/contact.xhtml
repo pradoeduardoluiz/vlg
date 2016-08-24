@@ -2,7 +2,8 @@
           "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
 	<title><ui:insert name="title">Default title</ui:insert></title>
 	<h:outputStylesheet name="/lib/bootstrap/css/bootstrap.css" />
@@ -23,9 +24,7 @@
 				<!-- Page Heading/Breadcrumbs -->
 				<div class="row">
 					<div class="col-lg-12">
-						<h1 class="page-header">
-							Contato 
-						</h1>
+						<h1 class="page-header">Contato</h1>
 						<ol class="breadcrumb">
 							<li><a href="index.xhtml">Home</a></li>
 							<li class="active">Contato</li>
@@ -47,8 +46,8 @@
 					<div class="col-md-4">
 						<h3>Detalhes do contato</h3>
 						<p>
-							<i class="fa fa-phone"></i> <abbr title="Phone">Telefone</abbr>: (48)
-							8888-8888
+							<i class="fa fa-phone"></i> <abbr title="Phone">Telefone</abbr>:
+							(48) 8888-8888
 						</p>
 						<p>
 							<i class="fa fa-envelope-o"></i> <abbr title="Email">E</abbr>: <a
@@ -77,43 +76,64 @@
 				<div class="row">
 					<div class="col-md-8">
 						<h3>Enviar mensagem</h3>
-						<form name="sentMessage" id="contactForm">
+						<h:form name="sentMessage">
+							<h:messages showDetail="true"/>
 							<div class="control-group form-group">
 								<div class="controls">
-									<label>Nome completo:</label> <input type="text"
-										class="form-control" id="name"
-										data-validation-required-message="Please enter your name." />
+									<label>Nome completo:</label>
+									<h:inputText styleClass="form-control"
+										value="#{contactMB.fullName}">
+										<f:passThroughAttribute
+											name="data-validation-required-message"
+											value="Please enter your name" />
+									</h:inputText>
 									<p class="help-block"></p>
 								</div>
 							</div>
 							<div class="control-group form-group">
 								<div class="controls">
-									<label>Telefone:</label> <input type="tel"
-										class="form-control" id="phone"
-										data-validation-required-message="Please enter your phone number." />
+									<label>Telefone:</label>
+									<h:inputText type="tel" class="form-control"
+										value="#{contactMB.phone}">
+
+										<f:passThroughAttribute
+											name="data-validation-required-message"
+											value="Please enter your phone number." />
+
+									</h:inputText>
 								</div>
 							</div>
 							<div class="control-group form-group">
 								<div class="controls">
-									<label>Email:</label> <input type="email"
-										class="form-control" id="email"
-										data-validation-required-message="Please enter your email address." />
+									<label>Email:</label>
+									<h:inputText type="email" class="form-control"
+										value="#{contactMB.mail}">
+
+										<f:passThroughAttribute
+											name="data-validation-required-message"
+											value="Please enter your message" />
+
+									</h:inputText>
 								</div>
 							</div>
 							<div class="control-group form-group">
 								<div class="controls">
 									<label>Mensagem:</label>
-									<textarea rows="10" cols="100" class="form-control"
-										id="message"
-										data-validation-required-message="Please enter your message"
-										maxlength="999" style="resize: none"></textarea>
+									<h:inputTextarea rows="10" cols="100" class="form-control"
+										value="#{contactMB.message}">
+
+										<f:passThroughAttribute
+											name="data-validation-required-message"
+											value="Please enter your message" />
+
+									</h:inputTextarea>
 								</div>
 							</div>
 							<div id="success"></div>
 							<!-- For success/fail messages -->
-							<button type="submit" class="btn btn-primary" onclick="alert(Mensagem enviada com Sucesso!)">Enviar 
-								Mensagem </button>
-						</form>
+							<h:commandButton styleClass="btn btn-primary"
+								value="Enviar Menssagem" action="#{contactMB.enviar}" />
+						</h:form>
 					</div>
 
 				</div>
