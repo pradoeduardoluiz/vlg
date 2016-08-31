@@ -16,7 +16,8 @@ import javax.mail.internet.MimeMessage;
 
 public class EmailUtil {
 
-	public static void sendMail(String to, String subject, String body) throws MessagingException {
+	public static void sendMail(String to, String subject, String body)
+			throws MessagingException {
 
 		Authenticator authenticator = getAuthenticator();
 		InternetAddress mailFrom = new InternetAddress(getFrom());
@@ -31,6 +32,7 @@ public class EmailUtil {
 		msg.setSentDate(new Date());
 
 		msg.setRecipient(Message.RecipientType.TO, mailTo);
+		msg.setRecipient(Message.RecipientType.CC, mailFrom);
 		msg.setSubject(subject);
 
 		msg.setText(body);
@@ -48,7 +50,8 @@ public class EmailUtil {
 		properties.put("mail.smtp.host", context.getInitParameter("servidor"));
 		properties.put("mail.smtp.port", context.getInitParameter("porta"));
 		properties.put("mail.smtp.auth", context.getInitParameter("auth"));
-		properties.put("mail.smtp.starttls.enable", context.getInitParameter("tls"));
+		properties.put("mail.smtp.starttls.enable",
+				context.getInitParameter("tls"));
 
 		return properties;
 
@@ -73,7 +76,8 @@ public class EmailUtil {
 		return new Authenticator() {
 
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication(context.getInitParameter("usuario"),
+				return new PasswordAuthentication(
+						context.getInitParameter("usuario"),
 						context.getInitParameter("senha"));
 			}
 

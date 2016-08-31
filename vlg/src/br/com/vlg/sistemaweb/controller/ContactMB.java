@@ -1,10 +1,11 @@
-
-package br.com.vlg.sistemaweb.util;
+package br.com.vlg.sistemaweb.controller;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.mail.MessagingException;
+
+import br.com.vlg.sistemaweb.util.EmailUtil;
 
 @ManagedBean
 public class ContactMB {
@@ -19,14 +20,22 @@ public class ContactMB {
 		try {
 			EmailUtil.sendMail(mail, "Contact", message);
 
-			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_INFO, "E-mail", "Enviado com sucesso!!"));
+			FacesContext.getCurrentInstance().addMessage(
+					null,
+					new FacesMessage(FacesMessage.SEVERITY_INFO, "E-mail",
+							"Enviado com sucesso!!"));
+			fullName = "";
+			phone = "";
+			mail = "";
+			message = "";
 
 		} catch (MessagingException e) {
 			// TODO Auto-generated catch block
 
-			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, "E-mail", "Houve um problema no envio!!"));
+			FacesContext.getCurrentInstance().addMessage(
+					null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "E-mail",
+							"Houve um problema no envio!!"));
 
 			e.printStackTrace();
 		}
