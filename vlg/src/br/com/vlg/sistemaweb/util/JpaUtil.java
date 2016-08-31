@@ -14,7 +14,7 @@ public class JpaUtil {
 
 	public static void init() {
 		if (EMF == null) {
-			EMF = Persistence.createEntityManagerFactory("vlg_pu");
+			EMF = Persistence.createEntityManagerFactory("vlg-pu");
 		}
 	}
 
